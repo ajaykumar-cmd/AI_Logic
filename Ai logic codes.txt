@@ -1,0 +1,55 @@
+a = int(input())
+
+mid_intervals = []
+
+for i in range(a):
+    start, end = map(int, input().split())
+    mid_intervals.append([start, end])
+
+mid_intervals.sort()
+
+result = []
+
+for start, end in mid_intervals:
+
+    if not result:
+        result.append([start, end])
+
+
+    elif start <= result[-1][1]:
+        result[-1][1] = max(result[-1][1], end)
+
+
+    else:
+        result.append([start, end])
+
+for start, end in result:
+    print(start, end)
+
+
+
+
+
+2)
+a = int(input())
+arr = list(map(int, input().split()))
+k = int(input())
+
+left = 0
+length_1 = 0
+start_1 = 1
+
+for right in range(a):
+
+    while max(arr[left:right + 1]) - min(arr[left:right + 1]) > k:
+        left += 1
+
+    length = right - left + 1
+
+    if length > length_1:
+        length_1= length
+        start_1 = left + 1
+
+print(length_1,start_1)
+
+
